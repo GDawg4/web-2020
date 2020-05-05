@@ -12,7 +12,15 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+    from django.conf.urls import url, include
+from django.contrib import admin
+from rest_framework import routers
+from rest_framework_jwt.views import (
+    obtain_jwt_token,
+    refresh_jwt_token
+)
 """
+
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
@@ -22,12 +30,12 @@ from rest_framework_jwt.views import (
 )
 
 from pets.views import PetViewSet
-
+from owners.views import OwnerViewSet
 
 router = routers.DefaultRouter()
 
 router.register(r'pets', PetViewSet)
-# router.register(r'owner', OwnerViewSet)
+router.register(r'owner', OwnerViewSet)
 
 # elapp.com/pets
 # elapp.com/api/v1/pets
